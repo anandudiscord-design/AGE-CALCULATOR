@@ -3,11 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Age Calculator</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div>hello world!</div>
-    <div> <script src="scripts.js"></script>
+
+    <div class="one">
+        <h1>Age Calculator</h1>
+
+        <input type="date" name="DOB" id="dob">
+        <button onclick="CalculateDate()">Calculate Age</button>
+
+        <p id="result"></p>
     </div>
+
+<script>
+function CalculateDate() {
+    let dobInput = document.getElementById("dob").value;
+    if (!dobInput) {
+        document.getElementById('result').innerText = "Please select a date";
+        return;
+    }
+    const dob = new Date(dobInput);
+    const today = new Date();
+    const diffTime = Math.abs(today - dob);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    document.getElementById('result').innerText =
+        `You have lived for approximately ${diffDays.toLocaleString()} days!`;
+}
+</script>
+
 </body>
 </html>
